@@ -8,7 +8,7 @@ import com.nikolaipatrick.minigamesmanager2.commands.mm_list;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_add;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_reload;
 import com.nikolaipatrick.minigamesmanager2.commands.minigame;
-
+import com.nikolaipatrick.minigamesmanager2.config.config;
 
 public final class MinigamesManager2 extends JavaPlugin {
 
@@ -16,6 +16,8 @@ public final class MinigamesManager2 extends JavaPlugin {
     public void onEnable() {
         getLogger().info("Starting MinigamesManager 1.0.0");
         this.registerCommands();
+        config.createConfig();
+
     }
 
     @Override
