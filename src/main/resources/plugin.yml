@@ -1,0 +1,8 @@
+name: MinigamesManager2
+version: '${project.version}'
+main: com.nikolaipatrick.minigamesmanager2.MinigamesManager2
+api-version: 1.19
+prefix: MinigamesMngr
+authors: [ Artich0ked ]
+description: A queue system for minigames
+website: nikolipatrick.com
