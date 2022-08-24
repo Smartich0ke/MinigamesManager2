@@ -30,25 +30,3 @@ jobs:
       
     - name: Maven Build
       run: mvn -B package --file pom.xml
-      
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref_name }}${{ env.release_type }}.${{ github.run_number }}
-        release_name: ${{ env.artifact_name }}${{ env.release_type }}-build${{ github.run_number }}
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Asset
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: target/${{ env.artifact_name }}.jar
-        asset_name: ${{ env.artifact_name }}${{ env.release_type }}-build${{ github.run_number }}.jar
-        asset_content_type: application/java-archive
