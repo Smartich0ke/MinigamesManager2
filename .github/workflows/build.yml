@@ -56,12 +56,12 @@ jobs:
         asset_name: ${{ env.artifact_name }}-${{env.artifact_version}}-build${{ github.run_number }}.jar
         asset_content_type: application/java-archive
     - name: Deploy to test server
-  # You may pin to the exact commit or the version.
-  # uses: Atyn/simple-sftp-action@a684a17fdd2b79d23101d568d9e8b5070f58e685
-      uses: Atyn/simple-sftp-action@0.0.2
+      uses: siva1024/scp-deployer@v1.0
       with:
-    # URL to the SFTP server. Example: sftp://USERNAME:PASSWORD@example.com/remote-directory
-        url: ${{ secrets.SFTP_URL }}
-    # The directory that should be uploaded
-        localdir: ${{ steps.create_release.outputs.upload_url }}
+        host: ${{ secrets.SFTP_LOCATION }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        port: 2022
+        password: ${{ secrets.SFTP_PASSWORD }}
+        source: target/${{ env.artifact_name }}-${{env.artifact_version}}.jar
+        target: plugins/
 
