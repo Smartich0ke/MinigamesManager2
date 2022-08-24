@@ -5,4 +5,34 @@ api-version: 1.19
 prefix: MinigamesMngr
 authors: [ Artich0ked ]
 description: A queue system for minigames
-website: nikolipatrick.com
+website: nikolaipatrick.com
+commands:
+  mm-create:
+    description: §aCreate a minigame
+    usage: /mm-create <minigame>
+    permission: minigamesmanager.create
+  mm-delete:
+    description: §aDelete a minigame
+    usage: /mm-delete <minigame>
+    permission: minigamesmanager.delete
+  mm-list:
+    description: §aList minigames/lobbies/arenas
+    usage: /mm-list <minigames/lobbies/arenas> <minigame>
+    permission: minigamesmanager.list
+  mm-add:
+    description: §aAdd lobbies or arenas to a minigame
+    usage: /mm-add <lobby/arena> <world-name> <minigame>
+    permission: minigamesmanager.add
+  mm-set:
+    description: §aSet properties for a minigame
+    usage: /mm-set <property> <value>
+    permission: minigamesmanager.set
+  mm-reload:
+    description: §aReload all configuration files
+    usage: /mm-reload
+    permission: minigamesmanager.reload
+  minigame:
+    description: §aMain command for the end user
+    usage: /minigame <join/leave>
+
+

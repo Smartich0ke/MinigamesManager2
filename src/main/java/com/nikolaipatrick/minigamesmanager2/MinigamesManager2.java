@@ -6,23 +6,30 @@ import com.nikolaipatrick.minigamesmanager2.commands.mm_create;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_delete;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_list;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_add;
+import com.nikolaipatrick.minigamesmanager2.commands.mm_reload;
 import com.nikolaipatrick.minigamesmanager2.commands.minigame;
+
 
 public final class MinigamesManager2 extends JavaPlugin {
 
     @Override
     public void onEnable() {
         getLogger().info("Starting MinigamesManager 1.0.0");
-        getCommand("mm-create").setExecutor(new mm_create());
-        getCommand("mm-delete").setExecutor(new mm_delete());
-        getCommand("mm-list").setExecutor(new mm_list());
-        getCommand("mm-add").setExecutor(new mm_add());
-        getCommand("mm-set").setExecutor(new mm_set());
-        getCommand("minigame").setExecutor(new minigame());
+        this.registerCommands();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        getLogger().info("Goodbye!");
+    }
+    @SuppressWarnings("ConstantConditions")
+    public void registerCommands() {
+        this.getCommand("mm-create").setExecutor(new mm_create());
+        this.getCommand("mm-delete").setExecutor(new mm_delete());
+        this.getCommand("mm-list").setExecutor(new mm_list());
+        this.getCommand("mm-add").setExecutor(new mm_add());
+        this.getCommand("mm-set").setExecutor(new mm_set());
+        this.getCommand("mm-reload").setExecutor(new mm_reload());
+        this.getCommand("minigame").setExecutor(new minigame());
     }
 }
