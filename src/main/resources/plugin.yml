@@ -10,19 +10,19 @@ commands:
   mm-create:
     description: §aCreate a minigame
     usage: /mm-create <minigame>
-    permission: minigamesmanager.create
+    permission: minigamesmanager.create.minigame
   mm-delete:
     description: §aDelete a minigame
     usage: /mm-delete <minigame>
-    permission: minigamesmanager.delete
+    permission: minigamesmanager.delete.minigame
   mm-list:
     description: §aList minigames/lobbies/arenas
     usage: /mm-list <minigames/lobbies/arenas> <minigame>
-    permission: minigamesmanager.list
+    permission: minigamesmanager.list.minigame
   mm-add:
     description: §aAdd lobbies or arenas to a minigame
     usage: /mm-add <lobby/arena> <world-name> <minigame>
-    permission: minigamesmanager.add
+    permission: minigamesmanager.add.worlds
   mm-set:
     description: §aSet properties for a minigame
     usage: /mm-set <property> <value>
