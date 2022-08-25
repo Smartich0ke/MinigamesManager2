@@ -16,7 +16,7 @@ public class mm_create implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        String minigameName = args[1];
+        String minigameName = args[0];
         if(!player.hasPermission("minigamesmanager.create")) {
             if(args.length > 1) {
                 player.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Too many args!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
