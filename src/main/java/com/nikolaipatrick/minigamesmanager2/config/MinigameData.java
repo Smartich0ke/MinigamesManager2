@@ -20,6 +20,22 @@ public class MinigameData {
     public static void createMinigameProfile(String minigameName){
         minigameData.set("minigames." + minigameName + ".name", minigameName);
     }
+
+    public static void addMinigameWorld(String minigameName, String worldName, String worldType) {
+        //we need to convert the world name we want to add into an arrayList so that it is added as a list item in the YML:
+        ArrayList<String> worldNameList = new ArrayList<String>();
+        worldNameList.add(worldName);
+        if (worldType.equals("arena")) {
+            minigameData.set("minigames." + minigameName + ".arenas", worldNameList);
+        } else if (worldType.equals("")) {
+            minigameData.set("minigames." + minigameName + ".lobbies", worldNameList);
+        } else {
+            throw new RuntimeException(worldType + "is not a valid worldType. use arena or lobby.");
+        }
+    }
+
+
+
 }
 
 
