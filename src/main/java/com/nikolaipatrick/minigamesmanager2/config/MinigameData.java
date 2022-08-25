@@ -19,7 +19,7 @@ public class MinigameData {
     }
     public static void createMinigameProfile(String minigameName){
 
-        minigameDataFile.set("minigames." + minigameName + ".name", minigameName);
+        minigameDataFile.set("minigames." + minigameName + ".displayName", minigameName);
         try {
             minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
         } catch (IOException e) {
