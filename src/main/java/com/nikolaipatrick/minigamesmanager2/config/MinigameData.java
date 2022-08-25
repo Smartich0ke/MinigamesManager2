@@ -18,7 +18,13 @@ public class MinigameData {
         }
     }
     public static void createMinigameProfile(String minigameName){
+
         minigameDataFile.set("minigames." + minigameName + ".name", minigameName);
+        try {
+            minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             minigameDataFile.reload();
         } catch (IOException e) {
@@ -36,6 +42,11 @@ public class MinigameData {
             minigameDataFile.set("minigames." + minigameName + ".lobbies", worldNameList);
         } else {
             throw new RuntimeException(worldType + "is not a valid worldType. use arena or lobby.");
+        }
+        try {
+            minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         try {
             minigameDataFile.reload();
