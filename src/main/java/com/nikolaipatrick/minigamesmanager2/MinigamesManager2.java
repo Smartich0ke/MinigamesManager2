@@ -1,22 +1,26 @@
 package com.nikolaipatrick.minigamesmanager2;
 
-import com.nikolaipatrick.minigamesmanager2.commands.mm_set;
+import com.nikolaipatrick.minigamesmanager2.config.config;
 import org.bukkit.plugin.java.JavaPlugin;
+import com.nikolaipatrick.minigamesmanager2.commands.mm_set;
+import com.nikolaipatrick.minigamesmanager2.config.MinigameData;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_create;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_delete;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_list;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_add;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_reload;
 import com.nikolaipatrick.minigamesmanager2.commands.minigame;
-import com.nikolaipatrick.minigamesmanager2.config.config;
 
 public final class MinigamesManager2 extends JavaPlugin {
-
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        getConfig().set("thing", "1234");
+        saveConfig();
         getLogger().info("Starting MinigamesManager 1.0.0");
         this.registerCommands();
-        config.createConfig();
+        config.createConfigFile();
+        MinigameData.createDataFile();
 
     }
 
@@ -34,4 +38,6 @@ public final class MinigamesManager2 extends JavaPlugin {
         this.getCommand("mm-reload").setExecutor(new mm_reload());
         this.getCommand("minigame").setExecutor(new minigame());
     }
+
 }
+

@@ -7,9 +7,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class config {
-    public static void createConfig() {
+    public static void createConfigFile() {
+        YamlDocument configFile;
         try {
-            YamlDocument config = YamlDocument.create(new File("config.yml"), MinigamesManager2.getPlugin(MinigamesManager2.class).getResource("config.yml"));
+            configFile = YamlDocument.create(new File("plugins/MinigamesManager2/config.yml"), MinigamesManager2.getPlugin(MinigamesManager2.class).getResource("config.yml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
