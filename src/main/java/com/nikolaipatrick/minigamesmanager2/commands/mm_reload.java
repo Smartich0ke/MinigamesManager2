@@ -11,17 +11,23 @@ import java.io.IOException;
 public class mm_reload implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        try {
-            MinigameData.minigameDataFile.reload();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(sender.hasPermission("minigamesmanager.reload") || sender.isOp()){
+            try {
+                MinigameData.minigameDataFile.reload();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                config.configFile.reload();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sender.sendMessage(config.configFile.get("prefix") + "§aConfiguration reloaded successfully!");
+            return true;
+        } else {
+            sender.sendMessage(config.configFile.getString("deny-message"));
+            return true;
         }
-        try {
-            config.configFile.reload();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        sender.sendMessage(config.configFile.get("prefix") + "§aConfiguration reloaded successfully!");
-        return true;
+
     }
 }
