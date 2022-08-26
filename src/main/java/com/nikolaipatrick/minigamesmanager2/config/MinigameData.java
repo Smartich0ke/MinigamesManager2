@@ -31,6 +31,19 @@ public class MinigameData {
             throw new RuntimeException(e);
         }
     }
+    public static void deleteMinigameProfile(String minigameName) {
+        minigameDataFile.set("minigames." + minigameName , null);
+        try {
+            minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            minigameDataFile.reload();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void addMinigameWorld(String minigameName, String worldName, String worldType) {
         //we need to convert the world name we want to add into an arrayList so that it is added as a list item in the YML:
