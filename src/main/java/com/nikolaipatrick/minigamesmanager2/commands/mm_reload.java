@@ -22,10 +22,10 @@ public class mm_reload implements CommandExecutor {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            sender.sendMessage(config.configFile.get("prefix") + "§aConfiguration reloaded successfully!");
+            sender.sendMessage(config.messagePrefix() + "§aConfiguration reloaded successfully!");
             return true;
         } else {
-            sender.sendMessage(config.configFile.getString("deny-message"));
+            sender.sendMessage(config.denyMessage());
             return true;
         }
 

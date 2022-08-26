@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class MinigameData {
     public static YamlDocument minigameDataFile;
+
     public static void createDataFile(){
 
         try {
@@ -67,9 +68,6 @@ public class MinigameData {
             throw new RuntimeException(e);
         }
     }
-
-
-
 }
 
 

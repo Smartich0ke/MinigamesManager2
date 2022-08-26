@@ -18,19 +18,19 @@ public class mm_create implements CommandExecutor {
 
         if(sender.hasPermission("minigamesmanager.create") || sender.isOp()) {
             if(args.length > 1) {
-                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Too many args!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
+                sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Too many args!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
                 return true;
             }
             if(args.length == 0) {
-                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Not enough args!!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
+                sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Not enough args!!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
                 return true;
             }
             String minigameName = args[0];
             MinigameData.createMinigameProfile(minigameName);
-            sender.sendMessage(config.configFile.getString("prefix") + ChatColor.GREEN + "Minigame created successfully!");
+            sender.sendMessage(config.messagePrefix() + ChatColor.GREEN + "Minigame created successfully!");
             return true;
         } else {
-            sender.sendMessage(config.configFile.getString("deny-message"));
+            sender.sendMessage(config.denyMessage());
             return true;
         }
     }

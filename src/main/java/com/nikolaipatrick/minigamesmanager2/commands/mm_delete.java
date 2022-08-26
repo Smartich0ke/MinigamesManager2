@@ -12,20 +12,20 @@ public class mm_delete implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender.hasPermission("minigamesmanager.delete.minigame")){
             if(args.length > 2){
-                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Too many args!!");
+                sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Too many args!!");
                 return true;
             }
             if(args.length < 2) {
-                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "not enough args!");
+                sender.sendMessage(config.messagePrefix() + ChatColor.RED + "not enough args!");
                 return true;
             }
             if (args[0].equals("minigame")) {
                 MinigameData.deleteMinigameProfile(args[1]);
-                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.GREEN + "Minigame" + args[1] + "deleted successfully!");
+                sender.sendMessage(config.messagePrefix() + ChatColor.GREEN + "Minigame" + args[1] + "deleted successfully!");
                 return true;
             }
         } else {
-            sender.sendMessage(config.configFile.getString("deny-message"));
+            sender.sendMessage(config.denyMessage());
             return true;
         }
         return false;
