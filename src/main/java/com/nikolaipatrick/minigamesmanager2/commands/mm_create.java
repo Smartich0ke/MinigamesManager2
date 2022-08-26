@@ -15,23 +15,22 @@ public class mm_create implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player = (Player) sender;
 
-        if(player.hasPermission("minigamesmanager.create")) {
+        if(sender.hasPermission("minigamesmanager.create") || sender.isOp()) {
             if(args.length > 1) {
-                player.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Too many args!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
+                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Too many args!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
                 return true;
             }
             if(args.length == 0) {
-                player.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Not enough args!!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
+                sender.sendMessage(config.configFile.getString("prefix") + ChatColor.RED + "Not enough args!!" + ChatColor.GREEN + "(Usage:" + ChatColor.YELLOW + "/mm-create <nameOfMinigame>" + ChatColor.GREEN + ")");
                 return true;
             }
             String minigameName = args[0];
             MinigameData.createMinigameProfile(minigameName);
-            player.sendMessage(config.configFile.getString("prefix") + ChatColor.GREEN + "Minigame created successfully!");
+            sender.sendMessage(config.configFile.getString("prefix") + ChatColor.GREEN + "Minigame created successfully!");
             return true;
         } else {
-            player.sendMessage(ChatColor.RED + "Sorry! You don't have the necessary permissions to run that command!");
+            sender.sendMessage(config.configFile.getString("deny-message"));
             return true;
         }
     }
