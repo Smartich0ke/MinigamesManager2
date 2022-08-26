@@ -21,7 +21,7 @@ public class mm_delete implements CommandExecutor {
             }
             if (args[0].equals("minigame")) {
                 MinigameData.deleteMinigameProfile(args[1]);
-                sender.sendMessage(config.messagePrefix() + ChatColor.GREEN + "Minigame" + args[1] + "deleted successfully!");
+                sender.sendMessage(config.messagePrefix() + ChatColor.GREEN + "Minigame " + ChatColor.YELLOW + args[1] + ChatColor.GREEN + " deleted successfully!");
                 return true;
             }
         } else {

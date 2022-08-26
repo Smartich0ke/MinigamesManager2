@@ -1,2 +1,2 @@
-prefix: '[&2MinigamesManager] '
-deny-message: 'Sorry! You don't have the necessary permission to do that!'
+prefix: '&2[MinigamesManager] '
+deny-message: 'Sorry! You dont have the necessary permission to do that!'

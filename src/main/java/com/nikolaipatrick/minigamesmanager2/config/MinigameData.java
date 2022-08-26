@@ -21,6 +21,7 @@ public class MinigameData {
     public static void createMinigameProfile(String minigameName){
 
         minigameDataFile.set("minigames." + minigameName + ".displayName", minigameName);
+        minigameDataFile.set("minigames." + minigameName + ".maxPlayers", 4);
         try {
             minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
         } catch (IOException e) {
@@ -47,13 +48,11 @@ public class MinigameData {
     }
 
     public static void addMinigameWorld(String minigameName, String worldName, String worldType) {
-        //we need to convert the world name we want to add into an arrayList so that it is added as a list item in the YML:
-        ArrayList<String> worldNameList = new ArrayList<String>();
-        worldNameList.add(worldName);
+
         if (worldType.equals("arena")) {
-            minigameDataFile.set("minigames." + minigameName + ".arenas", worldNameList);
+            minigameDataFile.set("minigames." + minigameName + ".arenas" + worldName + ".onlinePlayers", 0);
         } else if (worldType.equals("")) {
-            minigameDataFile.set("minigames." + minigameName + ".lobbies", worldNameList);
+            minigameDataFile.set("minigames." + minigameName + ".lobbies" + worldName + ".onlinePlayers", 0);
         } else {
             throw new RuntimeException(worldType + "is not a valid worldType. use arena or lobby.");
         }
