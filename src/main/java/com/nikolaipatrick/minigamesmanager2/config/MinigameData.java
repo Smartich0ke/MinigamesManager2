@@ -67,6 +67,19 @@ public class MinigameData {
             throw new RuntimeException(e);
         }
     }
+    public static void setMaxPlayers(String minigame, int maxPlayers) {
+        minigameDataFile.set("minigames." + minigame + "maxPlayers", maxPlayers);
+        try {
+            minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            minigameDataFile.reload();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 
