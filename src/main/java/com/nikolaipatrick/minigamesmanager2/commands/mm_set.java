@@ -15,10 +15,9 @@ public class mm_set implements CommandExecutor {
                 sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Not enough args!");
                 return true;
             } else {
-                if (args[0].equals("maxPlayers")) {
+                if (args[0].equals("maxplayers")) {
                     if (args.length < 3) {
                         sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Not enough args!");
-                        return true;
                     } else {
                         int maxPlayers;
                         try {
@@ -28,9 +27,15 @@ public class mm_set implements CommandExecutor {
                             return true;
                         }
                         MinigameData.setMaxPlayers(args[1], maxPlayers);
-                        return true;
                     }
+                    return true;
+                }
+                if (args[0].equals("tp-points")) {
+                    if (args.length < 4) {
+                        sender.sendMessage("Not enough args!!");
+                        return true;
 
+                    }
                 }
             }
 

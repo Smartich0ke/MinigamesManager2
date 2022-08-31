@@ -80,6 +80,9 @@ public class MinigameData {
             throw new RuntimeException(e);
         }
     }
+    public static void setTpPoint (String minigame, int point, int x, int y, int z){
+
+    }
 }
 
 
