@@ -81,7 +81,19 @@ public class MinigameData {
         }
     }
     public static void setTpPoint (String minigame, int point, int x, int y, int z){
-
+        minigameDataFile.set("minigames." + minigame + ".tp-points." + point + ".x", x);
+        minigameDataFile.set("minigames." + minigame + ".tp-points." + point + ".y", y);
+        minigameDataFile.set("minigames." + minigame + ".tp-points." + point + ".z", z);
+        try {
+            minigameDataFile.save(new File("plugins/MinigamesManager2/minigame_data.yml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            minigameDataFile.reload();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
