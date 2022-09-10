@@ -38,6 +38,8 @@ public class mm_set implements CommandExecutor {
                     } else {
                         try {
                             MinigameData.setTpPoint(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+                            sender.sendMessage(config.messagePrefix() + ChatColor.GREEN + "TPpoint added!");
+                            return true;
                         }
                         catch (NumberFormatException ex) {
                             sender.sendMessage(config.messagePrefix() + ChatColor.RED + "invalid coordinates!" + ChatColor.YELLOW + " (Usage: /mm-set tp-points <minigame> <point> <x> <y> <z>)");
