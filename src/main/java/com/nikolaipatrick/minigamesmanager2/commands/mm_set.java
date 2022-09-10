@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 public class mm_set implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("minigames.set") || sender.isOp()) {
+        if (sender.hasPermission("minigamesmanager.set") || sender.isOp()) {
             if (args.length < 1) {
                 sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Not enough args!");
                 return true;
