@@ -30,12 +30,21 @@ public class mm_set implements CommandExecutor {
                     }
                     return true;
                 }
+                //mm-set tp-points <minigame> <point> <x> <y> <z>
                 if (args[0].equals("tp-points")) {
                     if (args.length < 4) {
                         sender.sendMessage("Not enough args!!");
                         return true;
-
+                    } else {
+                        try {
+                            MinigameData.setTpPoint(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+                        }
+                        catch (NumberFormatException ex) {
+                            sender.sendMessage(config.messagePrefix() + ChatColor.RED + "invalid coordinates!" + ChatColor.YELLOW + " (Usage: /mm-set tp-points <minigame> <point> <x> <y> <z>)");
+                            return true;
+                        }
                     }
+
                 }
             }
 
