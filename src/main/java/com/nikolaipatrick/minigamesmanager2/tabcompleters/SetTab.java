@@ -1,5 +1,7 @@
 package com.nikolaipatrick.minigamesmanager2.tabcompleters;
 
+import com.nikolaipatrick.minigamesmanager2.config.MinigameData;
+import com.nikolaipatrick.minigamesmanager2.config.config;
 import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -8,7 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class SetTab implements TabCompleter {
 
@@ -24,12 +28,25 @@ public class SetTab implements TabCompleter {
         }
         List<String> result = new ArrayList<String>();
         if (args.length == 1) {
+            result.clear();
             for (String a : tabArgs) {
                 if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
                     result.add(a);
                 }
             }
             return result;
+        }
+        if (args.length == 2) {
+            if(args[0].equals("max-players")){
+                result.clear();
+                result.add("[<number>]");
+                return result;
+            }
+            if (args[0].equals("tp-points")){
+                result.clear();
+                result = Arrays.asList(MinigameData.minigameDataFile.getSection("minigames").getKeys().toString());
+                return result;
+            }
         }
         return null;
     }
