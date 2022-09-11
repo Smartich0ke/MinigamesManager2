@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class mm_set implements CommandExecutor {
     @Override
@@ -15,7 +16,7 @@ public class mm_set implements CommandExecutor {
                 sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Not enough args!");
                 return true;
             } else {
-                if (args[0].equals("maxplayers")) {
+                if (args[0].equals("max-players")) {
                     if (args.length < 3) {
                         sender.sendMessage(config.messagePrefix() + ChatColor.RED + "Not enough args!");
                     } else {

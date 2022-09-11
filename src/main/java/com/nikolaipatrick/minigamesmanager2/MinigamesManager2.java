@@ -1,6 +1,8 @@
 package com.nikolaipatrick.minigamesmanager2;
 
 import com.nikolaipatrick.minigamesmanager2.config.config;
+import com.nikolaipatrick.minigamesmanager2.tabcompleters.SetTab;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.nikolaipatrick.minigamesmanager2.commands.mm_set;
 import com.nikolaipatrick.minigamesmanager2.config.MinigameData;
@@ -27,6 +29,9 @@ public final class MinigamesManager2 extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Goodbye!");
+    }
+    public void resgisterTabCompleter(){
+        this.getCommand("mm-set").setTabCompleter(new SetTab());
     }
     @SuppressWarnings("ConstantConditions")
     public void registerCommands() {
