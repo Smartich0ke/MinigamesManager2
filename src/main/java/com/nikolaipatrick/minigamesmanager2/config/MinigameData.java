@@ -51,7 +51,7 @@ public class MinigameData {
 
         if (worldType.equals("arena")) {
             minigameDataFile.set("minigames." + minigameName + ".arenas" + worldName + ".onlinePlayers", 0);
-        } else if (worldType.equals("")) {
+        } else if (worldType.equals("lobby")) {
             minigameDataFile.set("minigames." + minigameName + ".lobbies" + worldName + ".onlinePlayers", 0);
         } else {
             throw new RuntimeException(worldType + "is not a valid worldType. use arena or lobby.");
