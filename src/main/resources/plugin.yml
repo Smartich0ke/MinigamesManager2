@@ -21,7 +21,7 @@ commands:
     permission: minigamesmanager.list.minigame
   mm-add:
     description: §aAdd lobbies or arenas to a minigame
-    usage: /mm-add <lobby/arena> <world-name> <minigame>
+    usage: /mm-add world <minigame> <lobby/arena> <world-name>
     permission: minigamesmanager.add.worlds
   mm-set:
     description: §aSet properties for a minigame
