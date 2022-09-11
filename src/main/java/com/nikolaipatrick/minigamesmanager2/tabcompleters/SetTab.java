@@ -38,12 +38,11 @@ public class SetTab implements TabCompleter {
                 return result;
             }
             if (args[0].equals("tp-points")){
-                result.clear();
                 Set<String> minigamesSet = new HashSet<>();
                 minigamesSet = MinigameData.minigameDataFile.getSection("minigames").getRoutesAsStrings(false);
                 ArrayList<String> minigamesList = new ArrayList<>(minigamesSet);
                 for (String a : minigamesList) {
-                    if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
+                    if (a.toLowerCase().startsWith(args[1].toLowerCase())) {
                         result.add(a);
                     }
                 }
