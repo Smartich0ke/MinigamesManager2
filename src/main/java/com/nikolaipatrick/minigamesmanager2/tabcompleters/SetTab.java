@@ -41,7 +41,13 @@ public class SetTab implements TabCompleter {
                 result.clear();
                 Set<String> minigamesSet = new HashSet<>();
                 minigamesSet = MinigameData.minigameDataFile.getSection("minigames").getRoutesAsStrings(false);
-                return new ArrayList<>(minigamesSet);
+                ArrayList<String> minigamesList = new ArrayList<>(minigamesSet);
+                for (String a : minigamesList) {
+                    if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
+                        result.add(a);
+                    }
+                }
+                return result;
             }
         }
         return null;
