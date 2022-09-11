@@ -9,7 +9,10 @@ import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 public class SetTab implements TabCompleter {
 
@@ -41,8 +44,7 @@ public class SetTab implements TabCompleter {
             }
             if (args[0].equals("tp-points")){
                 result.clear();
-                result = Collections.singletonList(MinigameData.minigameDataFile.getSection("minigames").getKeys().toString());
-                return result;
+                return (List<String>) MinigameData.minigameDataFile.getSection("configSection").getRoutesAsStrings(false);
             }
         }
         return null;
