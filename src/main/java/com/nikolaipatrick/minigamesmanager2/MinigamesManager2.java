@@ -21,6 +21,7 @@ public final class MinigamesManager2 extends JavaPlugin {
         saveConfig();
         getLogger().info("Starting MinigamesManager 1.0.0");
         this.registerCommands();
+        this.registerTabCompleter();
         config.createConfigFile();
         MinigameData.createDataFile();
 
@@ -30,7 +31,7 @@ public final class MinigamesManager2 extends JavaPlugin {
     public void onDisable() {
         getLogger().info("Goodbye!");
     }
-    public void resgisterTabCompleter(){
+    public void registerTabCompleter(){
         this.getCommand("mm-set").setTabCompleter(new SetTab());
     }
     @SuppressWarnings("ConstantConditions")
