@@ -47,12 +47,12 @@ public class MinigameData {
         }
     }
 
-    public static void addMinigameWorld(String minigameName, String worldName, String worldType) {
+    public static void addMinigameWorld(String minigameName, String worldName, String worldType ) {
 
         if (worldType.equals("arena")) {
-            minigameDataFile.set("minigames." + minigameName + ".arenas" + worldName + ".onlinePlayers", 0);
+            minigameDataFile.set("minigames." + minigameName + ".arenas." + worldName + ".onlinePlayers", 0);
         } else if (worldType.equals("lobby")) {
-            minigameDataFile.set("minigames." + minigameName + ".lobbies" + worldName + ".onlinePlayers", 0);
+            minigameDataFile.set("minigames." + minigameName + ".lobbies." + worldName + ".onlinePlayers", 0);
         } else {
             throw new RuntimeException(worldType + "is not a valid worldType. use arena or lobby.");
         }
