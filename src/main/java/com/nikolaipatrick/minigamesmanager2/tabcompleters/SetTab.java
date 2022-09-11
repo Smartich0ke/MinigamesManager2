@@ -44,7 +44,7 @@ public class SetTab implements TabCompleter {
             }
             if (args[0].equals("tp-points")){
                 result.clear();
-                return (List<String>) MinigameData.minigameDataFile.getSection("configSection").getRoutesAsStrings(false);
+                return (List<String>) MinigameData.minigameDataFile.getSection("minigames").getRoutesAsStrings(false);
             }
         }
         return null;
