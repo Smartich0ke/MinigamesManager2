@@ -4,6 +4,7 @@ import com.nikolaipatrick.minigamesmanager2.config.MinigameData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,6 +47,34 @@ public class SetTab implements TabCompleter {
                         result.add(a);
                     }
                 }
+                return result;
+            }
+        }
+        if (args.length == 3) {
+            if (args[0].equals("tp-points")) {
+                result.clear();
+                result.add("[<number>]");
+                return result;
+            }
+        }
+        if (args.length == 4) {
+            if (args[0].equals("tp-points")) {
+                result.clear();
+                result.add("[<x>]");
+                return result;
+            }
+        }
+        if (args.length == 5) {
+            if (args[0].equals("tp-points")) {
+                result.clear();
+                result.add("[<y>]");
+                return result;
+            }
+        }
+        if (args.length == 6) {
+            if (args[0].equals("tp-points")) {
+                result.clear();
+                result.add("[<z>]");
                 return result;
             }
         }
