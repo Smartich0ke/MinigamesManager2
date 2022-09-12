@@ -21,7 +21,7 @@ public class AddTab implements TabCompleter {
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         List<String> result = new ArrayList<String>();
-        if (args.length == 0) {
+        if (args.length == 1) {
             tabArgs.add("world");
             for (String a : tabArgs) {
                 if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
@@ -30,7 +30,7 @@ public class AddTab implements TabCompleter {
             }
             return result;
         }
-        if (args.length == 1) {
+        if (args.length == 2) {
             if (args[0].equals("world")){
                 Set<String> minigamesSet = new HashSet<>();
                 minigamesSet = MinigameData.minigameDataFile.getSection("minigames").getRoutesAsStrings(false);
@@ -45,13 +45,13 @@ public class AddTab implements TabCompleter {
                 return null;
             }
         }
-        if (args.length == 2) {
+        if (args.length == 3) {
             if (args[0].equals("world")){
                 tabArgs.clear();
                 tabArgs.add("lobby");
                 tabArgs.add("arena");
                 for (String a : tabArgs) {
-                    if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
+                    if (a.toLowerCase().startsWith(args[2].toLowerCase())) {
                         result.add(a);
                     }
                 }
@@ -60,7 +60,7 @@ public class AddTab implements TabCompleter {
                 return null;
             }
         }
-        if (args.length == 3) {
+        if (args.length == 4) {
             if (args[0].equals("world")){
                 tabArgs.clear();
                 tabArgs.add("[<name_of_world>]");
