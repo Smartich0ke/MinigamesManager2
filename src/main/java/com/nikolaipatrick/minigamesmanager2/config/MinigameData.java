@@ -2,10 +2,15 @@ package com.nikolaipatrick.minigamesmanager2.config;
 
 import com.nikolaipatrick.minigamesmanager2.MinigamesManager2;
 import dev.dejvokep.boostedyaml.YamlDocument;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class MinigameData {
     public static YamlDocument minigameDataFile;
@@ -48,11 +53,12 @@ public class MinigameData {
     }
 
     public static void addMinigameWorld(String minigameName, String worldName, String worldType ) {
-
         if (worldType.equals("arena")) {
             minigameDataFile.set("minigames." + minigameName + ".arenas." + worldName + ".onlinePlayers", 0);
+            minigameDataFile.set("minigames." + minigameName + ".arenas." + worldName + ".isInUse", false);
         } else if (worldType.equals("lobby")) {
             minigameDataFile.set("minigames." + minigameName + ".lobbies." + worldName + ".onlinePlayers", 0);
+            minigameDataFile.set("minigames." + minigameName + ".lobbies." + worldName + ".isInUse", false);
         } else {
             throw new RuntimeException(worldType + "is not a valid worldType. use arena or lobby.");
         }
@@ -95,6 +101,11 @@ public class MinigameData {
             throw new RuntimeException(e);
         }
     }
+    public static String getOnlinePlayersInArena(String minigame, String world){
+        return minigameDataFile.getString("minigames." + minigame + ".arena." + minigame);
+
+    }
+
 }
 
 
