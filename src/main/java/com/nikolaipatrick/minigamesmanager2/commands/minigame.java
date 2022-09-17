@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class minigame implements CommandExecutor {
 
@@ -41,21 +42,21 @@ public class minigame implements CommandExecutor {
                     lobbyNamesAndPlayers.put(worldName, onlinePlayers);
                 }
                 int lobbyMaxPlayerValue = 0;
-                String lobbyMaxPlayerWorld = null;
+                String lobbyToJoin = null;
                 for (String worldName : lobbyNamesAndPlayers.keySet()) {
                     int valueToTest = lobbyNamesAndPlayers.get(worldName);
-                    if (valueToTest > lobbyMaxPlayerValue) {
+                    if (valueToTest > lobbyMaxPlayerValue && !(valueToTest == MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".maxPlayers"))) {
                         lobbyMaxPlayerValue = valueToTest;
-                        lobbyMaxPlayerWorld = worldName;
+                        lobbyToJoin = worldName;
                     }
                 }
-                if (lobbyMaxPlayerWorld == null) {
-                    lobbyMaxPlayerWorld = lobbyWorldNamesList.get(0);
+                if (lobbyToJoin == null) {
+                    lobbyToJoin = lobbyWorldNamesList.get(0);
                 }
-                Location lobbySpawn = new Location(Bukkit.getWorld(lobbyMaxPlayerWorld), 0, 0, 0);
-                player.sendMessage(config.messagePrefix() + ChatColor.AQUA + "Sending you to " + ChatColor.YELLOW + lobbyMaxPlayerWorld + ChatColor.AQUA + "...");
+                Location lobbySpawn = new Location(Bukkit.getWorld(lobbyToJoin), 0, 0, 0);
+                player.sendMessage(config.messagePrefix() + ChatColor.AQUA + "Sending you to " + ChatColor.YELLOW + lobbyToJoin + ChatColor.AQUA + "...");
                 player.teleport(lobbySpawn);
-                MinigameData.minigameDataFile.set("minigames." + minigameToJoin + ".lobbies." + lobbyMaxPlayerWorld + ".onlinePlayers", MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".lobbies." + lobbyMaxPlayerWorld + ".onlinePlayers")+1);
+                MinigameData.minigameDataFile.set("minigames." + minigameToJoin + ".lobbies." + lobbyToJoin + ".onlinePlayers", MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".lobbies." + lobbyToJoin + ".onlinePlayers")+1);
                 try {
                     MinigameData.minigameDataFile.save();
                 } catch (IOException e) {
@@ -67,10 +68,41 @@ public class minigame implements CommandExecutor {
                     throw new RuntimeException(e);
                 }
                 for(Player p : Bukkit.getOnlinePlayers()){
-                    if(p.getWorld().getName().equals(lobbyMaxPlayerWorld)) {
-                        p.sendTitle(MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".lobbies." + lobbyMaxPlayerWorld + ".onlinePlayers") + " / " + MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".maxPlayers") , null, 5, 100, 30);
+                    if(p.getWorld().getName().equals(lobbyToJoin)) {
+                        p.sendTitle(MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".lobbies." + lobbyToJoin + ".onlinePlayers") + " / " + MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".maxPlayers") , null, 5, 100, 30);
                         p.playNote(p.getLocation(), Instrument.SNARE_DRUM, Note.sharp(1, Note.Tone.C));
 
+                    }
+                }
+                if (MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".lobbies." + lobbyToJoin + ".onlinePlayers").equals(MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".maxPlayers")) ) {
+                    Set<String> arenaWorldNamesSet = new HashSet<>();
+                    try {
+                        MinigameData.minigameDataFile.reload();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    arenaWorldNamesSet = MinigameData.minigameDataFile.getSection("minigames." + minigameToJoin + ".arenas").getRoutesAsStrings(false);
+                    ArrayList<String> arenaWorldNamesList = new ArrayList<>(arenaWorldNamesSet);
+                    String arenaToJoin = null;
+                    while (arenaToJoin == null) {
+                        for (String worldName : arenaWorldNamesList) {
+                            if (!MinigameData.minigameDataFile.getBoolean("minigames." + minigameToJoin + ".arenas." + worldName + ".isInUse")) {
+                                arenaToJoin = worldName;
+                            }
+                        }
+                    }
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        if (p.getWorld().getName().equals(lobbyToJoin)) {
+                            for (int countdown = 5; countdown > 0; countdown--) {
+                                p.sendTitle(String.valueOf(countdown), null, 0, 15, 5);
+                                if(MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".lobbies."+ lobbyToJoin + "onlinePlayers") < MinigameData.minigameDataFile.getInt("minigames." + minigameToJoin + ".maxPlayers")){
+                                    countdown = 0;
+                                    return true;
+                                }
+                            }
+                            Location arenaSpawn = new Location(Bukkit.getWorld(arenaToJoin), 0, 0, 0);
+                            p.teleport(arenaSpawn);
+                        }
                     }
                 }
                 return true;
